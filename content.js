@@ -23,12 +23,11 @@
   const modelNumber = extractModelNumber();
   if (modelNumber) {
     navigator.clipboard.writeText(modelNumber).then(() => {
-      alert(`Copied Model Number: ${modelNumber}`);
+      chrome.runtime.sendMessage({ type: 'modelCopied' });
     }).catch((err) => {
-      alert('Failed to copy Model Number');
-      console.error(err);
+      console.error('Failed to copy model number:', err);
     });
   } else {
-    alert('Model Number not found on this page');
+    console.warn('Model Number not found on this page');
   }
 })();
