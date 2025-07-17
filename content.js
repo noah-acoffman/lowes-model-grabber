@@ -1,23 +1,19 @@
 (function () {
   function extractModelNumber() {
-    const labelSelectors = [
-      'div:contains("Model #")',
-      'span:contains("Model #")'
-    ];
-
-    // More robust method for Lowes' product pages
-    const possibleText = document.body.innerText.match(/Model\s*#\s*[:\-]?\s*(\S+)/i);
-    if (possibleText && possibleText[1]) {
-      return possibleText[1].trim();
+    const bodyText = document.body.innerText;
+    const modelMatch = bodyText.match(/Model\s*#\s*([^\n|]+)/i);
+    if (modelMatch && modelMatch[1]) {
+      return modelMatch[1].trim();
     }
 
-    // Try to find via structured layout
-    const labels = Array.from(document.querySelectorAll('div, span, td'));
-    for (const el of labels) {
+    // Fallback: try DOM-based search
+    const spans = document.querySelectorAll('span, div, td');
+    for (const el of spans) {
       if (el.textContent.includes('Model #')) {
-        const sibling = el.nextElementSibling;
-        if (sibling) {
-          return sibling.textContent.trim();
+        const text = el.textContent.trim();
+        const fallbackMatch = text.match(/Model\s*#\s*([^\n|]+)/i);
+        if (fallbackMatch && fallbackMatch[1]) {
+          return fallbackMatch[1].trim();
         }
       }
     }
