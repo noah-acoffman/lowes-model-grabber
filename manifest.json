@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Lowes Model Number Copier",
-  "version": "1.0",
-  "description": "Copies the model number from Lowes.com product pages",
+  "name": "Lowes Model Number Extractor",
+  "version": "1.3",
+  "description": "Copies the model number from Lowes.com product pages for faster scanning",
   "permissions": ["scripting", "activeTab", "clipboardWrite"],
   "action": {
     "default_title": "Copy Model Number"
