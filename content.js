@@ -6,7 +6,6 @@
       return modelMatch[1].trim();
     }
 
-    // Fallback: try DOM-based search
     const spans = document.querySelectorAll('span, div, td');
     for (const el of spans) {
       if (el.textContent.includes('Model #')) {
