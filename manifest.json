@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Lowes Model Number Copier",
+  "version": "1.0",
+  "description": "Copies the model number from Lowes.com product pages",
+  "permissions": ["scripting", "activeTab"],
+  "action": {
+    "default_title": "Copy Model Number"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.lowes.com/pd/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "128": "icon.png"
+  }
+}
